@@ -20,8 +20,6 @@ const EVENT_NAME = 'chatwoot:ready';
 
 export const IFrameHelper = {
   getUrl({ baseUrl, websiteToken }) {
-    alert('Hi');
-
     return `${baseUrl}/widget?website_token=${websiteToken}`;
   },
   createFrame: ({ baseUrl, websiteToken }) => {

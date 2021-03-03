@@ -49,6 +49,8 @@ export default {
   mounted() {
     const { websiteToken, locale } = window.chatwootWebChannel;
     this.setLocale(locale);
+    window.alert('isIFrame-->' + this.isIFrame);
+
     if (this.isIFrame) {
       this.registerListeners();
       this.sendLoadedEvent();
