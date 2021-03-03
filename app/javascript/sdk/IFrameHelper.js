@@ -29,8 +29,10 @@ export const IFrameHelper = {
     if (cwCookie) {
       widgetUrl = `${widgetUrl}&cw_conversation=${cwCookie}`;
     }
-    console.log('ReactNativeWebView', window);
+    console.log('ReactNativeWebView', window.ReactNativeWebView);
+    console.log('cwCookie', cwCookie);
     if (window.ReactNativeWebView) {
+      alert('RN works');
       window.ReactNativeWebView.postMessage(cwCookie);
     }
 
@@ -98,6 +100,7 @@ export const IFrameHelper = {
   },
   events: {
     loaded: message => {
+      console.log('message', message);
       Cookies.set('cw_conversation', message.config.authToken, {
         expires: 365,
         sameSite: 'Lax',
