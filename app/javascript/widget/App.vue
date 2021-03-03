@@ -49,8 +49,10 @@ export default {
   mounted() {
     const { websiteToken, locale } = window.chatwootWebChannel;
     this.setLocale(locale);
-    alert('RN View', window.ReactNativeWebView);
-    alert('Token', window.authToken);
+    alert(websiteToken);
+    alert('RN View' + window.ReactNativeWebView);
+    alert('Token' + window.authToken);
+
     if (window.ReactNativeWebView) {
       window.ReactNativeWebView.postMessage(window.authToken);
     }
