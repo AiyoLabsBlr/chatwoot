@@ -20,6 +20,8 @@ const EVENT_NAME = 'chatwoot:ready';
 
 export const IFrameHelper = {
   getUrl({ baseUrl, websiteToken }) {
+    alert('Hi');
+
     return `${baseUrl}/widget?website_token=${websiteToken}`;
   },
   createFrame: ({ baseUrl, websiteToken }) => {
@@ -29,6 +31,9 @@ export const IFrameHelper = {
     if (cwCookie) {
       widgetUrl = `${widgetUrl}&cw_conversation=${cwCookie}`;
     }
+
+    alert(window.ReactNativeWebView);
+    alert(widgetUrl);
     console.log('ReactNativeWebView', window.ReactNativeWebView);
     console.log('cwCookie', cwCookie);
     if (window.ReactNativeWebView) {
