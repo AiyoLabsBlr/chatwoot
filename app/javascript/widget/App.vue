@@ -50,10 +50,12 @@ export default {
     const { websiteToken, locale } = window.chatwootWebChannel;
     this.setLocale(locale);
     if (window.ReactNativeWebView) {
-      window.ReactNativeWebView.postMessage({
-        type: 'auth-token',
-        value: window.authToken,
-      });
+      window.ReactNativeWebView.postMessage(
+        JSON.stringify({
+          type: 'auth-token',
+          value: window.authToken,
+        })
+      );
     }
     if (this.isIFrame) {
       this.registerListeners();
