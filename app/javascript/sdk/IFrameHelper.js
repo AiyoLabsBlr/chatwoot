@@ -29,6 +29,11 @@ export const IFrameHelper = {
     if (cwCookie) {
       widgetUrl = `${widgetUrl}&cw_conversation=${cwCookie}`;
     }
+    console.log('ReactNativeWebView', window);
+    if (window.ReactNativeWebView) {
+      window.ReactNativeWebView.postMessage(cwCookie);
+    }
+
     iframe.src = widgetUrl;
 
     iframe.id = 'chatwoot_live_chat_widget';
