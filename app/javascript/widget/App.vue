@@ -49,6 +49,7 @@ export default {
   mounted() {
     const { websiteToken, locale } = window.chatwootWebChannel;
     this.setLocale(locale);
+    this.registerListeners();
     if (window.ReactNativeWebView) {
       window.ReactNativeWebView.postMessage(
         JSON.stringify({
@@ -143,6 +144,7 @@ export default {
           return;
         }
         const message = IFrameHelper.getMessage(e);
+
         if (message.event === 'config-set') {
           this.setLocale(message.locale);
           this.setBubbleLabel();
