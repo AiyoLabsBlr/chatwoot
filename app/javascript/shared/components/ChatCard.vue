@@ -9,9 +9,11 @@
         {{ description }}
       </p>
       <card-button
-        v-for="action in actions"
-        :key="action.id"
-        :action="action"
+          v-for="action in filterActions"
+          :key="action.id"
+          :action="action"
+          :is-selected="isSelected(action)"
+          @click="onClick"
       />
     </div>
   </div>
@@ -37,13 +39,35 @@ export default {
       type: String,
       default: '',
     },
+    selected: {
+      type: String,
+      default: '',
+    },
+    hideFields: {
+      type: Boolean,
+      default: false,
+    },
     actions: {
       type: Array,
       default: () => [],
     },
     showAvatar: Boolean,
   },
-  computed: {},
+  computed: {
+    filterActions () {
+      return this.actions.filter(action => {
+        return action.type == 'link' || !this.hideFields
+      })
+    },
+  },
+  methods: {
+    isSelected(action) {
+      return this.selected === action.id;
+    },
+    onClick(selectedAction) {
+      this.$emit('click', selectedAction);
+    },
+  },
 };
 </script>
 

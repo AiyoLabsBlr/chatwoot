@@ -5,16 +5,16 @@
         {{ title }}
       </h4>
       <ul
-        v-if="!hideFields"
-        class="options"
-        :class="{ 'has-selected': !!selected }"
+          v-if="!hideFields"
+          class="options"
+          :class="{ 'has-selected': !!selected }"
       >
         <chat-option
-          v-for="option in options"
-          :key="option.id"
-          :action="option"
-          :is-selected="isSelected(option)"
-          @click="onClick"
+            v-for="option in options"
+            :key="option.id"
+            :action="option"
+            :is-selected="isSelected(option)"
+            @click="onClick"
         />
       </ul>
     </div>
