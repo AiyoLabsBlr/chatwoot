@@ -1,43 +1,47 @@
 <template>
   <div class="chat-bubble-wrap">
     <div
-      v-if="!isCards && !isOptions && !isForm && !isArticle"
-      class="chat-bubble agent"
+        v-if="!isCards && !isOptions && !isForm && !isArticle"
+        class="chat-bubble agent"
     >
       <div class="message-content" v-html="formatMessage(message, false)"></div>
       <email-input
-        v-if="isTemplateEmail"
-        :message-id="messageId"
-        :message-content-attributes="messageContentAttributes"
+          v-if="isTemplateEmail"
+          :message-id="messageId"
+          :message-content-attributes="messageContentAttributes"
       />
     </div>
     <div v-if="isOptions">
       <chat-options
-        :title="message"
-        :options="messageContentAttributes.items"
-        :hide-fields="!!messageContentAttributes.submitted_values"
-        @click="onOptionSelect"
+          :title="message"
+          :options="messageContentAttributes.items"
+          :hide-fields="!!messageContentAttributes.submitted_values"
+          @click="onOptionSelect"
       >
       </chat-options>
     </div>
     <chat-form
-      v-if="isForm && !messageContentAttributes.submitted_values"
-      :items="messageContentAttributes.items"
-      :button-label="messageContentAttributes.button_label"
-      :submitted-values="messageContentAttributes.submitted_values"
-      @submit="onFormSubmit"
+        v-if="isForm && !messageContentAttributes.submitted_values"
+        :items="messageContentAttributes.items"
+        :button-label="messageContentAttributes.button_label"
+        :submitted-values="messageContentAttributes.submitted_values"
+        @submit="onFormSubmit"
     >
     </chat-form>
     <div v-if="isCards">
-      <chat-card
-        v-for="item in messageContentAttributes.items"
-        :key="item.title"
-        :media-url="item.media_url"
-        :title="item.title"
-        :description="item.description"
-        :actions="item.actions"
-      >
-      </chat-card>
+      <VueSlickCarousel :arrows="true" :dots="true">
+        <chat-card
+            v-for="item in messageContentAttributes.items"
+            :key="item.title"
+            :media-url="item.media_url"
+            :title="item.title"
+            :description="item.description"
+            :actions="item.actions"
+            :hide-fields="!!messageContentAttributes.submitted_values"
+            @click="onCardActionSelect"
+        >
+        </chat-card>
+      </VueSlickCarousel>
     </div>
     <div v-if="isArticle">
       <chat-article :items="messageContentAttributes.items"></chat-article>
@@ -52,6 +56,10 @@ import ChatForm from 'shared/components/ChatForm';
 import ChatOptions from 'shared/components/ChatOptions';
 import ChatArticle from './template/Article';
 import EmailInput from './template/EmailInput';
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+// optional style for arrows & dots
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
   name: 'AgentMessageBubble',
@@ -61,6 +69,7 @@ export default {
     ChatForm,
     ChatOptions,
     EmailInput,
+    VueSlickCarousel,
   },
   mixins: [messageFormatterMixin],
   props: {
@@ -103,6 +112,12 @@ export default {
         messageId: this.messageId,
       });
     },
+    onCardActionSelect(selectedAction) {
+      this.onResponse({
+        submittedValues: [selectedAction],
+        messageId: this.messageId,
+      });
+    },
     onFormSubmit(formValues) {
       const formValuesAsArray = Object.keys(formValues).map(key => ({
         name: key,
@@ -131,6 +146,18 @@ export default {
       color: $color-woot;
     }
   }
+}
+button.slick-next.slick-arrow {
+  background-color: #3c4858;
+  border-radius: 50%;
+  z-index: 1000;
+  right: 0!important;
+}
+button.slick-prev.slick-arrow {
+  background-color: #3c4858;
+  border-radius: 50%;
+  z-index: 1000;
+  left: -25px;
 }
 </style>
 <style lang="scss" scoped>
