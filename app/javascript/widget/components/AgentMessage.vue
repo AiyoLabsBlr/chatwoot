@@ -1,41 +1,41 @@
 <template>
   <div
-    class="agent-message-wrap"
-    :class="{ 'has-response': hasRecordedResponse || isASubmittedForm }"
+      class="agent-message-wrap"
+      :class="{ 'has-response': hasRecordedResponse || isASubmittedForm }"
   >
     <div v-if="!isASubmittedForm" class="agent-message">
       <div class="avatar-wrap">
         <thumbnail
-          v-if="message.showAvatar || hasRecordedResponse"
-          :src="avatarUrl"
-          size="24px"
-          :username="agentName"
+            v-if="message.showAvatar || hasRecordedResponse"
+            :src="avatarUrl"
+            size="24px"
+            :username="agentName"
         />
       </div>
       <div class="message-wrap">
         <AgentMessageBubble
-          v-if="shouldDisplayAgentMessage"
-          :content-type="contentType"
-          :message-content-attributes="messageContentAttributes"
-          :message-id="message.id"
-          :message-type="messageType"
-          :message="message.content"
+            v-if="shouldDisplayAgentMessage"
+            :content-type="contentType"
+            :message-content-attributes="messageContentAttributes"
+            :message-id="message.id"
+            :message-type="messageType"
+            :message="message.content"
         />
         <div
-          v-if="hasAttachments"
-          class="chat-bubble has-attachment agent"
-          :class="wrapClass"
+            v-if="hasAttachments"
+            class="chat-bubble has-attachment agent"
+            :class="wrapClass"
         >
           <div v-for="attachment in message.attachments" :key="attachment.id">
             <file-bubble
-              v-if="attachment.file_type !== 'image'"
-              :url="attachment.data_url"
+                v-if="attachment.file_type !== 'image'"
+                :url="attachment.data_url"
             />
             <image-bubble
-              v-else
-              :url="attachment.data_url"
-              :thumb="attachment.thumb_url"
-              :readable-time="readableTime"
+                v-else
+                :url="attachment.data_url"
+                :thumb="attachment.thumb_url"
+                :readable-time="readableTime"
             />
           </div>
         </div>
@@ -48,9 +48,9 @@
     <UserMessage v-if="hasRecordedResponse" :message="responseMessage" />
     <div v-if="isASubmittedForm">
       <UserMessage
-        v-for="submittedValue in submittedFormValues"
-        :key="submittedValue.id"
-        :message="submittedValue"
+          v-for="submittedValue in submittedFormValues"
+          :key="submittedValue.id"
+          :message="submittedValue"
       />
     </div>
   </div>
@@ -85,9 +85,9 @@ export default {
   computed: {
     shouldDisplayAgentMessage() {
       if (
-        this.contentType === 'input_select' &&
-        this.messageContentAttributes.submitted_values &&
-        !this.message.content
+          this.contentType === 'input_select' &&
+          this.messageContentAttributes.submitted_values &&
+          !this.message.content
       ) {
         return false;
       }
@@ -96,7 +96,7 @@ export default {
     },
     hasAttachments() {
       return !!(
-        this.message.attachments && this.message.attachments.length > 0
+          this.message.attachments && this.message.attachments.length > 0
       );
     },
     readableTime() {
@@ -128,22 +128,22 @@ export default {
       // eslint-disable-next-line
       const BotImage = require('dashboard/assets/images/chatwoot_bot.png');
       const displayImage = this.useInboxAvatarForBot
-        ? this.inboxAvatarUrl
-        : BotImage;
+          ? this.inboxAvatarUrl
+          : BotImage;
 
       if (this.message.message_type === MESSAGE_TYPE.TEMPLATE) {
         return displayImage;
       }
 
       return this.message.sender
-        ? this.message.sender.avatar_url
-        : displayImage;
+          ? this.message.sender.avatar_url
+          : displayImage;
     },
     hasRecordedResponse() {
       return (
-        this.messageContentAttributes.submitted_email ||
-        (this.messageContentAttributes.submitted_values &&
-          this.contentType !== 'form')
+          this.messageContentAttributes.submitted_email ||
+          (this.messageContentAttributes.submitted_values &&
+              this.contentType !== 'form')
       );
     },
     responseMessage() {
@@ -158,6 +158,12 @@ export default {
           ] = this.messageContentAttributes.submitted_values;
           return { content: selectionOption.title || selectionOption.value };
         }
+        if (this.contentType === 'cards') {
+          const [
+            selectionOption = {},
+          ] = this.messageContentAttributes.submitted_values;
+          return { content: selectionOption.text || selectionOption.payload };
+        }
       }
       return '';
     },
@@ -166,10 +172,10 @@ export default {
     },
     submittedFormValues() {
       return this.messageContentAttributes.submitted_values.map(
-        submittedValue => ({
-          id: submittedValue.name,
-          content: submittedValue.value,
-        })
+          submittedValue => ({
+            id: submittedValue.name,
+            content: submittedValue.value,
+          })
       );
     },
     wrapClass() {

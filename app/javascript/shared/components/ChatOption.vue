@@ -1,8 +1,8 @@
 <template>
   <li
-    class="option"
-    :class="{ 'is-selected': isSelected }"
-    :style="{ borderColor: widgetColor }"
+      class="option"
+      :class="{ 'is-selected': isSelected }"
+      :style="{ borderColor: widgetColor }"
   >
     <button class="option-button button" @click="onClick">
       <span :style="{ color: widgetColor }">{{ action.title }}</span>
@@ -31,6 +31,7 @@ export default {
   },
   methods: {
     onClick() {
+
       this.$emit('click', this.action);
     },
   },
