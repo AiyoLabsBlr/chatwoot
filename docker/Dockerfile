@@ -15,6 +15,7 @@ ENV RAILS_ENV ${RAILS_ENV}
 
 ENV BUNDLE_PATH="/gems"
 
+RUN apk add --no-cache git
 RUN apk update \
   && apk add \
     openssl \
@@ -40,6 +41,7 @@ RUN if [ "$RAILS_ENV" = "production" ]; then \
   else bundle install -j 4 -r 3; \
   fi
 
+RUN apk add --no-cache git
 COPY package.json yarn.lock ./
 RUN yarn install
 
@@ -67,6 +69,7 @@ ARG RAILS_ENV=production
 ENV RAILS_ENV ${RAILS_ENV}
 ENV BUNDLE_PATH="/gems"
 
+RUN apk add --no-cache git
 RUN apk add --update --no-cache \
     openssl \
     tzdata \
