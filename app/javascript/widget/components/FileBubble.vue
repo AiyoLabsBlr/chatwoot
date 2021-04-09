@@ -1,5 +1,9 @@
 <template>
-  <div class="file message-text__wrap" @click="openLink">
+  <div v-if="isVideo">
+    <video controls :src="url">
+    </video>
+  </div>
+  <div v-else class="file message-text__wrap" @click="openLink">
     <div class="icon-wrap">
       <i class="ion-document-text"></i>
     </div>
@@ -47,6 +51,24 @@ export default {
       const filename = this.url.substring(this.url.lastIndexOf('/') + 1);
       return filename;
     },
+    getExtension() {
+      let file_name = this.fileName;
+      let parts = file_name.split('.');
+      return parts[parts.length - 1];
+    },
+    isVideo() {
+      let ext = this.getExtension;
+      switch (ext.toLowerCase()) {
+        case 'm4v':
+        case 'avi':
+        case 'mpg':
+        case 'mp4':
+          // etc
+          return true;
+      }
+      return false;
+    },
+
   },
   methods: {
     openLink() {
