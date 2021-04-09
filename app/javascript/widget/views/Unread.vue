@@ -11,12 +11,12 @@
       </button>
     </div>
     <div class="unread-messages">
-      <agent-bubble
+    <!--  <agent-bubble
         v-for="message in unreadMessages"
         :key="message.id"
         :message-id="message.id"
         :message="getMessageContent(message)"
-      />
+      /> -->
     </div>
     <div>
       <button
