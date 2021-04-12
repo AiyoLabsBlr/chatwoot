@@ -34,12 +34,10 @@ export const IFrameHelper = {
     iframe.id = 'chatwoot_live_chat_widget';
     iframe.style.visibility = 'hidden';
 
-    // let holderClassName = `woot-widget-holder woot--hide woot-elements--${window.$chatwoot.position}`;
-    let holderClassName = `woot-widget-holder woot-elements--${window.$chatwoot.position}`;
+    let holderClassName = `woot-widget-holder woot--hide woot-elements--${window.$chatwoot.position}`;
     if (window.$chatwoot.hideMessageBubble) {
       holderClassName += ` woot-widget--without-bubble`;
     }
-    window.$chatwoot.isOpen = true;
     addClass(widgetHolder, holderClassName);
     widgetHolder.appendChild(iframe);
     body.appendChild(widgetHolder);
@@ -173,14 +171,13 @@ export const IFrameHelper = {
 
     if (!window.$chatwoot.hideMessageBubble) {
       const chatIcon = createBubbleIcon({
-        className: 'woot-widget-bubble woot--hide',
+        className: 'woot-widget-bubble',
         src: bubbleImg,
         target: chatBubble,
       });
-      const closeIcon = closeBubble;
 
-      const closeIconclassName = `woot-elements--${window.$chatwoot.position} woot-widget-bubble woot--close`;
-      // const closeIconclassName = `woot-elements--${window.$chatwoot.position} woot-widget-bubble woot--close`;
+      const closeIcon = closeBubble;
+      const closeIconclassName = `woot-elements--${window.$chatwoot.position} woot-widget-bubble woot--close woot--hide`;
       addClass(closeIcon, closeIconclassName);
 
       chatIcon.style.background = widgetColor;
@@ -190,6 +187,9 @@ export const IFrameHelper = {
       bubbleHolder.appendChild(closeIcon);
       bubbleHolder.appendChild(createNotificationBubble());
       onClickChatBubble();
+      setTimeout(function(){
+        window.document.querySelector('.woot-widget-bubble').click()
+      },5000)
     }
   },
   setCurrentUrl: () => {
