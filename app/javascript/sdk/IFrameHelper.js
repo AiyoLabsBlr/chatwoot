@@ -188,7 +188,8 @@ export const IFrameHelper = {
       bubbleHolder.appendChild(createNotificationBubble());
       onClickChatBubble();
       setTimeout(function(){
-        window.document.querySelector('.woot-widget-bubble').click()
+          if(!window.$chatwoot.isOpen)
+            window.$chatwoot.toggle()
       },5000)
     }
   },
