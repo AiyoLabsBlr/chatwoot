@@ -187,10 +187,10 @@ export const IFrameHelper = {
       bubbleHolder.appendChild(closeIcon);
       bubbleHolder.appendChild(createNotificationBubble());
       onClickChatBubble();
-      setTimeout(function(){
-          if(!window.$chatwoot.isOpen)
-            window.$chatwoot.toggle()
-      },5000)
+      // setTimeout(function(){
+      //     if(!window.$chatwoot.isOpen)
+      //       window.$chatwoot.toggle()
+      // },5000)
     }
   },
   setCurrentUrl: () => {
