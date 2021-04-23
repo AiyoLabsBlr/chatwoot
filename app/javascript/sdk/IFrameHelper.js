@@ -141,10 +141,11 @@ export const IFrameHelper = {
       const toggleValue = true;
 
       if (!isOpen && unreadMessageCount > 0) {
-        IFrameHelper.sendMessage('set-unread-view');
-        onBubbleClick({ toggleValue });
-        const holderEl = document.querySelector('.woot-widget-holder');
-        addClass(holderEl, 'has-unread-view');
+        window.$chatwoot.toggle()
+        // IFrameHelper.sendMessage('set-unread-view');
+        // onBubbleClick({ toggleValue });
+        // const holderEl = document.querySelector('.woot-widget-holder');
+        // addClass(holderEl, 'has-unread-view');
       }
     },
 
