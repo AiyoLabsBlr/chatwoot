@@ -77,7 +77,7 @@ export default {
 
 .card-message {
   background: white;
-  max-width: 220px;
+  max-width: 350px;
   padding: $space-small;
   border-radius: $space-small;
   overflow: hidden;
@@ -103,7 +103,7 @@ export default {
     max-height: 150px;
   }
 
-  .action-button + .action-button {
+  .action-button {
     background: white;
     @include thin-border($color-woot);
     color: $color-woot;
