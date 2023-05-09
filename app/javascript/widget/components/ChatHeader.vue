@@ -8,7 +8,7 @@
         alt="avatar"
       />
       <div>
-        <div class="text-black-900 font-medium text-base flex items-center">
+        <div class="text-black-900 font-medium text-base flex items-center" style="display:none">
           <span class="mr-1" v-html="title" />
           <div
             :class="
