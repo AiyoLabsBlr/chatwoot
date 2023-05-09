@@ -4,7 +4,7 @@
       :key="action.uri"
       class="action-button button"
       :href="action.uri"
-      :style="{ background: white, color: widgetColor, borderColor: widgetColor }"
+      :style="{ background: "white", color: widgetColor, borderColor: widgetColor }"
       target="_blank"
       rel="noopener nofollow noreferrer"
   >
@@ -14,7 +14,7 @@
       v-else
       :key="action.payload"
       class="action-button button"
-      :style="{ background: white, borderColor: widgetColor, color: widgetColor }"
+      :style="{ background: "white", borderColor: widgetColor, color: widgetColor }"
       @click="onClick"
   >
     {{ action.text }}
