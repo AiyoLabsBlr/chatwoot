@@ -104,9 +104,13 @@ export default {
   }
 
   .action-button {
-    background: white;
-    @include thin-border($color-woot);
-    color: $color-woot;
+    // background: white;
+    // @include thin-border($color-woot);
+    // color: $color-woot;
+    
+    background: #fff;
+    border: 1px solid #005BAA;
+    color: #005BAA;
   }
 }
 </style>
