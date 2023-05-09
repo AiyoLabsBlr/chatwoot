@@ -29,9 +29,6 @@ export default {
     },
   },
   computed: {
-    ...mapGetters({
-      widgetColor: 'appConfig/getWidgetColor',
-    }),
     isLink() {
       return this.action.type === 'link';
     },

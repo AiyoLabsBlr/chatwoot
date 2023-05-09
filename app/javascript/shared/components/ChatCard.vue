@@ -107,10 +107,10 @@ export default {
     // background: white;
     // @include thin-border($color-woot);
     // color: $color-woot;
-    
-    background: #fff;
-    border: 1px solid #005BAA;
-    color: #005BAA;
+
+    background: #fff !important;
+    border: 1px solid #005BAA !important;
+    color: #005BAA !important;
   }
 }
 </style>
