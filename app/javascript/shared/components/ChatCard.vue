@@ -111,6 +111,8 @@ export default {
     background: #fff !important;
     border: 1px solid #005BAA !important;
     color: #005BAA !important;
+    white-space: inherit !important;
+    padding: 1rem !important;
   }
 }
 </style>
