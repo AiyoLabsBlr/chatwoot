@@ -223,6 +223,7 @@ export default {
     font-size: $font-size-small;
     font-weight: $font-weight-medium;
     margin: $space-small 0;
+    display: none !important;
     padding-left: $space-micro;
   }
 
