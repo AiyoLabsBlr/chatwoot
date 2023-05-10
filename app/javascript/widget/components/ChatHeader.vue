@@ -8,7 +8,7 @@
         alt="avatar"
       />
       <div>
-        <div class="text-black-900 font-medium text-base flex items-center" style="display:none">
+        <div class="text-black-900 font-medium text-base flex items-center">
           <span class="mr-1" v-html="title" />
           <div
             :class="
@@ -18,7 +18,7 @@
             "
           />
         </div>
-        <div class="text-xs mt-1 text-black-700">
+        <div class="text-xs mt-1 text-black-700" style="display:none">
           {{ replyWaitMeessage }}
         </div>
       </div>
